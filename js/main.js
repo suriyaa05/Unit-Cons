@@ -1,0 +1,566 @@
+/***************************************************
+==================== JS INDEX ======================
+****************************************************
+// Data Js
+// Mobile Menu Js
+// Sticky Js
+// Search Bar Js
+// Backtotop Js
+// Fun Fact Js
+// VenoBox Js
+// Accordion Js
+// Hero Slider Js
+// Service Slider Js
+// Marquee slider Js
+// Project Slider Js
+// Testimonial Slider Js
+// Blog Slider Js
+// Awards Slider Js
+// Line Animation Js
+
+****************************************************/
+
+(function ($) {
+	"use strict";
+	$(document).ready(function () {
+		////////////////////////////////////////////////////
+		// Data js
+		$("[data-bg-image]").each(function () {
+			var $this = $(this),
+				$image = $this.data("bg-image");
+			$this.css("background-image", "url(" + $image + ")");
+		});
+
+		////////////////////////////////////////////////////
+		// Mobile Menu Js
+		$(".menu_bar").on("click", function () {
+			$(this).toggleClass("on");
+		});
+
+		// offcanvas
+		$(".menu_bar.menu_offcanvas").on("click", function () {
+			$(".tj-offcanvas-area").toggleClass("opened");
+			$("body").toggleClass("overflow-hidden");
+		});
+
+		$(".main-mobile-menu").meanmenu({
+			meanMenuContainer: ".mobile_menu",
+			meanScreenWidth: "10000",
+			meanExpand: ['<i class="tji-drop-down"></i>'],
+		});
+
+		// Hamburger Menu Js
+		$(".mobile_menu_bar").on("click", function () {
+			$(".hamburger-area").addClass("opened");
+			$(".body-overlay").addClass("opened");
+		});
+		$(".hamburger_close_btn").on("click", function () {
+			$(".hamburger-area").removeClass("opened");
+			$(".body-overlay").removeClass("opened");
+			$(".mobile_menu_bar").removeClass("on");
+		});
+		$(".body-overlay").on("click", function () {
+			$(".hamburger-area").removeClass("opened");
+			$(".body-overlay").removeClass("opened");
+			$(".mobile_menu_bar").removeClass("on");
+		});
+
+		////////////////////////////////////////////////////
+		// Sticky Js
+		$(window).scroll(function () {
+			var Width = $(document).width();
+			if ($("body").scrollTop() > 250 || $("html").scrollTop() > 250) {
+				$(".header-sticky").addClass("sticky");
+			} else {
+				$(".header-sticky").removeClass("sticky");
+			}
+		});
+
+		////////////////////////////////////////////////////
+		// Search Bar Js
+		$(".header-search .search").on("click", function () {
+			$(".search_popup").addClass("search-opened");
+			$(".search-popup-overlay").addClass("search-popup-overlay-open");
+		});
+		$(".search_close_btn").on("click", function () {
+			$(".search_popup").removeClass("search-opened");
+			$(".search-popup-overlay").removeClass("search-popup-overlay-open");
+		});
+		$(".search-popup-overlay").on("click", function () {
+			$(".search_popup").removeClass("search-opened");
+			$(this).removeClass("search-popup-overlay-open");
+		});
+
+		////////////////////////////////////////////////////
+		// Backtotop Js
+		function back_to_top() {
+			var btn = $("#back_to_top");
+			var btn_wrapper = $(".back-to-top-wrapper");
+
+			$(window).scroll(function () {
+				if ($(window).scrollTop() > 300) {
+					btn_wrapper.addClass("back-to-top-btn-show");
+				} else {
+					btn_wrapper.removeClass("back-to-top-btn-show");
+				}
+			});
+
+			btn.on("click", function (e) {
+				e.preventDefault();
+				$("html, body").animate({ scrollTop: 0 }, "300");
+			});
+		}
+		back_to_top();
+
+		////////////////////////////////////////////////////
+		// Fun Fact Js
+		$(".counter").counterUp({
+			delay: 10,
+			time: 1000,
+		});
+
+		////////////////////////////////////////////////////
+		// VenoBox Js
+		if ($(".ig-gallery").length > 0) {
+			new VenoBox({
+				selector: ".ig-gallery",
+				numeration: true,
+				// infinigall: true,
+				spinner: "pulse",
+			});
+		}
+
+		if ($(".video-popup").length > 0) {
+			new VenoBox({
+				selector: ".video-popup",
+				numeration: true,
+				// infinigall: true,
+				spinner: "pulse",
+			});
+		}
+
+		////////////////////////////////////////////////////
+		// Accordion Js
+		if ($(".accordion-item").length > 0) {
+			$(".accordion-item .faq-title").on("click", function () {
+				if ($(this).parent().hasClass("active")) {
+					$(this).parent().removeClass("active");
+				} else {
+					$(this).parent().siblings().removeClass("active");
+					$(this).parent().addClass("active");
+				}
+			});
+		}
+
+		////////////////////////////////////////////////////
+		// Hero Slider JS
+		if (document.querySelector(".hero-slider")) {
+			var hero = new Swiper(".hero-slider", {
+				slidesPerView: 1,
+				spaceBetween: 0,
+				loop: true,
+				speed: 600,
+				autoplay: {
+					delay: 5000,
+				},
+				navigation: {
+					nextEl: ".slider-next",
+					prevEl: ".slider-prev",
+				},
+			});
+		}
+
+		////////////////////////////////////////////////////
+		// Service Slider Js
+		if ($(".service-slider").length > 0) {
+			var service = new Swiper(".service-slider", {
+				slidesPerView: 3,
+				spaceBetween: 30,
+				loop: true,
+				autoplay: {
+					delay: 9000,
+				},
+				speed: 600,
+				navigation: {
+					nextEl: ".slider-next",
+					prevEl: ".slider-prev",
+				},
+				pagination: {
+					el: ".service-pagination",
+					clickable: true,
+				},
+				breakpoints: {
+					320: {
+						slidesPerView: 1,
+					},
+					576: {
+						slidesPerView: 1,
+					},
+					640: {
+						slidesPerView: 2,
+					},
+					768: {
+						slidesPerView: 2,
+					},
+					992: {
+						slidesPerView: 3,
+					},
+					1024: {
+						slidesPerView: 3,
+					},
+				},
+			});
+		}
+
+		////////////////////////////////////////////////////
+		// Marquee slider Js
+		if ($(".marquee-slider").length > 0) {
+			var marquee = new Swiper(".marquee-slider", {
+				slidesPerView: "auto",
+				spaceBetween: 0,
+				freemode: true,
+				centeredSlides: true,
+				loop: true,
+				speed: 1500,
+				allowTouchMove: false,
+				autoplay: {
+					delay: 1,
+					disableOnInteraction: true,
+				},
+			});
+		}
+
+		////////////////////////////////////////////////////
+		// Project Slider Js
+		if ($(".project-slider").length > 0) {
+			var project = new Swiper(".project-slider", {
+				slidesPerView: 3,
+				spaceBetween: 30,
+				centeredSlides: true,
+				loop: true,
+				speed: 600,
+				autoplay: {
+					delay: 2000,
+				},
+				pagination: {
+					el: ".project-pagination",
+					clickable: true,
+				},
+				breakpoints: {
+					320: {
+						slidesPerView: 1,
+					},
+					576: {
+						slidesPerView: 1,
+					},
+					768: {
+						slidesPerView: 1.2,
+					},
+					992: {
+						slidesPerView: 1.5,
+					},
+					1200: {
+						slidesPerView: 1.6,
+					},
+					1440: {
+						slidesPerView: 1.9,
+					},
+				},
+			});
+		}
+
+		// Project Slider Js
+		if ($(".project-slider-two").length > 0) {
+			var project = new Swiper(".project-slider-two", {
+				slidesPerView: 3,
+				spaceBetween: 30,
+				centeredSlides: true,
+				loop: true,
+				autoplay: {
+					delay: 9000,
+				},
+				speed: 600,
+				navigation: {
+					nextEl: ".slider-next",
+					prevEl: ".slider-prev",
+				},
+				pagination: {
+					el: ".project-pagination",
+					clickable: true,
+				},
+				breakpoints: {
+					0: {
+						slidesPerView: 1,
+					},
+					576: {
+						slidesPerView: 1.6,
+					},
+					640: {
+						slidesPerView: 2,
+					},
+					768: {
+						slidesPerView: 2,
+					},
+					992: {
+						slidesPerView: 2,
+					},
+					1024: {
+						slidesPerView: 3,
+					},
+				},
+			});
+		}
+
+		////////////////////////////////////////////////////
+		// Testimonial Slider Js
+		if ($(".testimonial-slider").length > 0) {
+			var testimonial = new Swiper(".testimonial-slider", {
+				slidesPerView: 1,
+				spaceBetween: 30,
+				loop: true,
+				speed: 600,
+				// autoplay: {
+				// 	delay: 2000,
+				// },
+				navigation: {
+					nextEl: ".slider-next",
+					prevEl: ".slider-prev",
+				},
+				pagination: {
+					el: ".testimonial-pagination",
+					clickable: true,
+				},
+			});
+		}
+
+		////////////////////////////////////////////////////
+		// Testimonial Slider Js
+		if ($(".testimonial-slider-two").length > 0) {
+			var testimonial = new Swiper(".testimonial-slider-two", {
+				slidesPerView: 3,
+				spaceBetween: 30,
+				loop: true,
+				speed: 600,
+				autoplay: {
+					delay: 2000,
+				},
+				pagination: {
+					el: ".testimonial-pagination",
+					clickable: true,
+				},
+				breakpoints: {
+					0: {
+						slidesPerView: 1,
+					},
+					576: {
+						slidesPerView: 1,
+					},
+					768: {
+						slidesPerView: 2,
+					},
+					992: {
+						slidesPerView: 3,
+					},
+					1200: {
+						slidesPerView: 3,
+					},
+					1440: {
+						slidesPerView: 3,
+					},
+				},
+			});
+		}
+
+		// Testimonial Slider Js
+		if ($(".testimonial-slider-three").length > 0) {
+			var testimonial = new Swiper(".testimonial-slider-three", {
+				slidesPerView: 3,
+				spaceBetween: 30,
+				loop: true,
+				speed: 600,
+				autoplay: {
+					delay: 2000,
+				},
+				navigation: {
+					nextEl: ".slider-next",
+					prevEl: ".slider-prev",
+				},
+				breakpoints: {
+					0: {
+						slidesPerView: 1,
+					},
+					576: {
+						slidesPerView: 1,
+					},
+					768: {
+						slidesPerView: 2,
+					},
+					992: {
+						slidesPerView: 3,
+					},
+					1200: {
+						slidesPerView: 3,
+					},
+					1440: {
+						slidesPerView: 3,
+					},
+				},
+			});
+		}
+
+		////////////////////////////////////////////////////
+		// Blog Slider Js
+		if ($(".blog-standard-slider").length > 0) {
+			var blog = new Swiper(".blog-standard-slider", {
+				slidesPerView: 1,
+				loop: true,
+				speed: 600,
+				autoplay: {
+					delay: 8500,
+				},
+				navigation: {
+					nextEl: ".slider-next",
+					prevEl: ".slider-prev",
+				},
+			});
+		}
+
+		////////////////////////////////////////////////////
+		// Awards Slider Js
+		if ($(".award-slider").length > 0) {
+			var service = new Swiper(".award-slider", {
+				slidesPerView: 3,
+				spaceBetween: 30,
+				loop: true,
+				speed: 600,
+				autoplay: {
+					delay: 9000,
+				},
+				pagination: {
+					el: ".award-pagination",
+					clickable: true,
+				},
+				breakpoints: {
+					320: {
+						slidesPerView: 1,
+					},
+					576: {
+						slidesPerView: 1,
+					},
+					640: {
+						slidesPerView: 2,
+					},
+					768: {
+						slidesPerView: 2,
+					},
+					992: {
+						slidesPerView: 3,
+					},
+					1024: {
+						slidesPerView: 3,
+					},
+				},
+			});
+		}
+
+		////////////////////////////////////////////////////
+		// Project Hover active change
+		if ($(".project-wrapper-three").length) {
+			$(".project_item").hover(function () {
+				// Remove active class from all siblings
+				$(this).siblings(".project_item").removeClass("active");
+
+				// Add active class to hovered item
+				$(this).addClass("active");
+
+				// Update image dynamically
+				const newSrc = $(this).data("src");
+				const $image = $(".project_list_img img");
+
+				// Animate zoom out, change image, then zoom back in
+				$image
+					.fadeOut(300)
+					.css("transform", "scale(0.9)")
+					.promise()
+					.done(function () {
+						$image.attr("src", newSrc).fadeIn(300).css("transform", "scale(1)");
+					});
+			});
+		}
+
+		////////////////////////////////////////////////////
+		// progress bar
+		const progressBarController = () => {
+			const progressContainers = document.querySelectorAll(".tj-progress");
+
+			if (progressContainers?.length) {
+				progressContainers.forEach(progressContainer => {
+					const targetedProgressBar =
+						progressContainer.querySelector(".tj-progress__bar");
+					const completedPercent =
+						parseInt(targetedProgressBar.getAttribute("data-perchant")) || 0;
+
+					console.log("Target progress:", completedPercent + "%"); // Debugging log
+
+					// Trigger animation when the element comes into view
+					const observer = new IntersectionObserver(
+						entries => {
+							entries.forEach(entry => {
+								if (entry.isIntersecting) {
+									// Animate the progress bar
+									targetedProgressBar.style.transition = "width 2s ease-out";
+									targetedProgressBar.style.width = `${completedPercent}%`;
+
+									// Animate the percentage text
+									const percentageText = progressContainer.querySelector(
+										".tj-progress__perchant"
+									);
+									if (percentageText) {
+										let currentPercent = 0;
+
+										const interval = setInterval(() => {
+											currentPercent++;
+											percentageText.textContent = `${currentPercent}%`;
+
+											if (currentPercent >= completedPercent) {
+												clearInterval(interval); // Stop the animation
+											}
+										}, 10); // Adjust the interval for animation speed
+									}
+								}
+							});
+						},
+						{
+							root: null, // Observing the viewport
+							threshold: [0.3, 0.9], // Progress triggers based on visibility
+						}
+					);
+					observer.observe(progressContainer);
+				});
+			}
+		};
+
+		// Call the function
+		progressBarController();
+
+		////////////////////////////////////////////////////
+		// nice select
+		if ($(".tj-nice-select").length) {
+			$(".tj-nice-select").niceSelect();
+		}
+
+		////////////////////////////////////////////////////
+		// wow js
+		new WOW().init();
+	});
+
+	////////////////////////////////////////////////////
+	// Preloader
+	$(window).on("load", function () {
+		if ($("#preloader").length > 0) {
+			setTimeout(() => {
+				$("#preloader").addClass("tj-preloader--hidden");
+			}, 100);
+		}
+	});
+})(jQuery);
