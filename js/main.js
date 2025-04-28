@@ -4,7 +4,6 @@
 // Data Js
 // Mobile Menu Js
 // Sticky Js
-// Search Bar Js
 // Backtotop Js
 // Fun Fact Js
 // VenoBox Js
@@ -75,22 +74,6 @@
 				$(".header-sticky").removeClass("sticky");
 			}
 		});
-
-		////////////////////////////////////////////////////
-		// Search Bar Js
-		$(".header-search .search").on("click", function () {
-			$(".search_popup").addClass("search-opened");
-			$(".search-popup-overlay").addClass("search-popup-overlay-open");
-		});
-		$(".search_close_btn").on("click", function () {
-			$(".search_popup").removeClass("search-opened");
-			$(".search-popup-overlay").removeClass("search-popup-overlay-open");
-		});
-		$(".search-popup-overlay").on("click", function () {
-			$(".search_popup").removeClass("search-opened");
-			$(this).removeClass("search-popup-overlay-open");
-		});
-
 		////////////////////////////////////////////////////
 		// Backtotop Js
 		function back_to_top() {
@@ -332,137 +315,6 @@
 				},
 			});
 		}
-
-		////////////////////////////////////////////////////
-		// Testimonial Slider Js
-		if ($(".testimonial-slider-two").length > 0) {
-			var testimonial = new Swiper(".testimonial-slider-two", {
-				slidesPerView: 3,
-				spaceBetween: 30,
-				loop: true,
-				speed: 600,
-				autoplay: {
-					delay: 2000,
-				},
-				pagination: {
-					el: ".testimonial-pagination",
-					clickable: true,
-				},
-				breakpoints: {
-					0: {
-						slidesPerView: 1,
-					},
-					576: {
-						slidesPerView: 1,
-					},
-					768: {
-						slidesPerView: 2,
-					},
-					992: {
-						slidesPerView: 3,
-					},
-					1200: {
-						slidesPerView: 3,
-					},
-					1440: {
-						slidesPerView: 3,
-					},
-				},
-			});
-		}
-
-		// Testimonial Slider Js
-		if ($(".testimonial-slider-three").length > 0) {
-			var testimonial = new Swiper(".testimonial-slider-three", {
-				slidesPerView: 3,
-				spaceBetween: 30,
-				loop: true,
-				speed: 600,
-				autoplay: {
-					delay: 2000,
-				},
-				navigation: {
-					nextEl: ".slider-next",
-					prevEl: ".slider-prev",
-				},
-				breakpoints: {
-					0: {
-						slidesPerView: 1,
-					},
-					576: {
-						slidesPerView: 1,
-					},
-					768: {
-						slidesPerView: 2,
-					},
-					992: {
-						slidesPerView: 3,
-					},
-					1200: {
-						slidesPerView: 3,
-					},
-					1440: {
-						slidesPerView: 3,
-					},
-				},
-			});
-		}
-
-		////////////////////////////////////////////////////
-		// Blog Slider Js
-		if ($(".blog-standard-slider").length > 0) {
-			var blog = new Swiper(".blog-standard-slider", {
-				slidesPerView: 1,
-				loop: true,
-				speed: 600,
-				autoplay: {
-					delay: 8500,
-				},
-				navigation: {
-					nextEl: ".slider-next",
-					prevEl: ".slider-prev",
-				},
-			});
-		}
-
-		////////////////////////////////////////////////////
-		// Awards Slider Js
-		if ($(".award-slider").length > 0) {
-			var service = new Swiper(".award-slider", {
-				slidesPerView: 3,
-				spaceBetween: 30,
-				loop: true,
-				speed: 600,
-				autoplay: {
-					delay: 9000,
-				},
-				pagination: {
-					el: ".award-pagination",
-					clickable: true,
-				},
-				breakpoints: {
-					320: {
-						slidesPerView: 1,
-					},
-					576: {
-						slidesPerView: 1,
-					},
-					640: {
-						slidesPerView: 2,
-					},
-					768: {
-						slidesPerView: 2,
-					},
-					992: {
-						slidesPerView: 3,
-					},
-					1024: {
-						slidesPerView: 3,
-					},
-				},
-			});
-		}
-
 		////////////////////////////////////////////////////
 		// Project Hover active change
 		if ($(".project-wrapper-three").length) {
@@ -553,14 +405,114 @@
 		// wow js
 		new WOW().init();
 	});
-
-	////////////////////////////////////////////////////
-	// Preloader
-	$(window).on("load", function () {
-		if ($("#preloader").length > 0) {
-			setTimeout(() => {
-				$("#preloader").addClass("tj-preloader--hidden");
-			}, 100);
+	/////////////////////////////////////////////////////
+	//Email Form
+	document.addEventListener("DOMContentLoaded", function () {
+		const form = document.querySelector("#newsletter-form");
+		const emailInput = document.querySelector("#email");
+	  
+		form.addEventListener("submit", function (e) {
+		  e.preventDefault();
+	  
+		  const email = emailInput.value.trim();
+		  if (!email || !validateEmail(email)) {
+			alert("Please enter a valid email.");
+			return;
+		  }
+	  
+		  const formData = new FormData();
+		  formData.append("email", email);
+	  
+		  const scriptURL = "https://script.google.com/macros/s/AKfycbzXuVn-ieZJ6A3ILqAaA6aXt-v8YeIkTOb3oiTWotNOXOtw97gMiy2x84asO9wWkjaH/exec";
+	  
+		  fetch(scriptURL, {
+			method: "POST",
+			body: formData,
+		  })
+			.then(response => response.text())
+			.then(result => {
+			  alert("Thank you for subscribing!");
+			  form.reset();
+			})
+			.catch(error => {
+			  console.error("Error!", error.message);
+			  alert("Network error. Try again later.");
+			});
+		});
+	  
+		function validateEmail(email) {
+		  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		  return re.test(email.toLowerCase());
 		}
-	});
+	  });
+	/////////////////////////////////////////////////////
+	//Contact Form
+	document.addEventListener("DOMContentLoaded", function () {
+		const form = document.querySelector("#contact-form");
+		const emailInputThree = document.querySelector("#emailThree");
+		const nameInput = document.querySelector("#full");
+		const phoneInput = document.querySelector("#tel");
+		const subjectInput = document.querySelector("#subject");
+		const messageInput = document.querySelector("#message");
+	  
+		form.addEventListener("submit", function (e) {
+		  e.preventDefault();
+	  
+		  const name = nameInput.value.trim();
+		  const emailThree = emailInputThree.value.trim();
+		  const phone = phoneInput.value.trim();
+		  const subject = subjectInput.value.trim();
+		  const message = messageInput.value.trim();
+	  
+		  if (!name || !emailThree || !subject || !message) {
+			alert("Please fill in all required fields.");
+			return;
+		  }
+	  
+		  // Validate email
+		  if (!validateEmail(emailThree)) {
+			alert("Please enter a valid email.");
+			return;
+		  }
+	  
+		  const formData = new FormData();
+		  formData.append("name", name);
+		  formData.append("email", emailThree);
+		  formData.append("phone", phone);
+		  formData.append("subject", subject);
+		  formData.append("message", message);
+	  
+		  const scriptURL = "https://script.google.com/macros/s/AKfycbwauhJut5DiRj0QWqwDOHXrJXFd2qlaMlBaSfRztOWclkqG71p-8Br8NgkD_Uu4YVxV1w/exec";
+	  
+		  fetch(scriptURL, {
+			method: "POST",
+			body: formData,
+		  })
+			.then(response => response.text())
+			.then(result => {
+			  alert("Thank you for your message!");
+			  form.reset();
+			})
+			.catch(error => {
+			  console.error("Error!", error.message);
+			  alert("Network error. Please try again later.");
+			});
+		});
+	  
+		function validateEmail(emailThree) {
+		  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		  return re.test(emailThree.toLowerCase());
+		}
+	  });
+	  
+	  // Preloader
+	  $(window).on("load", function () {
+		if ($("#preloader").length > 0) {
+		  setTimeout(() => {
+			$("#preloader").addClass("tj-preloader--hidden");
+		  }, 100);
+		}
+	  });
+		
+	  
 })(jQuery);
