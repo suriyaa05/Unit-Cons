@@ -409,6 +409,7 @@
 	//Email Form
 	document.addEventListener("DOMContentLoaded", function () {
 		const form = document.querySelector("#newsletter-form");
+		if (!form) return;
 		const emailInput = document.querySelector("#email");
 	  
 		form.addEventListener("submit", function (e) {
@@ -449,6 +450,7 @@
 	//Contact Form
 	document.addEventListener("DOMContentLoaded", function () {
 		const form = document.querySelector("#contact-form");
+		if (!form) return;
 		const emailInputThree = document.querySelector("#emailThree");
 		const nameInput = document.querySelector("#full");
 		const phoneInput = document.querySelector("#tel");
