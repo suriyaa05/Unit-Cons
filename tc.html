@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Terms and Conditions</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      color: #333;
+    }
+
+    h1 {
+      color: #2c3e50;
+    }
+
+    .section-header {
+      cursor: pointer;
+      margin-top: 20px;
+      padding: 10px 0;
+      color: #34495e;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .section-header:hover {
+      color: #1abc9c;
+    }
+
+    .section-content {
+      display: none;
+      padding-left: 10px;
+      padding-top: 10px;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    footer {
+      margin-top: 40px;
+      border-top: 1px solid #ddd;
+      padding-top: 20px;
+      text-align: center;
+      font-size: 14px;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Terms and Conditions</h1>
+    <p>Effective Date: April 29, 2025</p>
+
+    <div>
+      <h2 class="section-header">1. Acceptance of Terms</h2>
+      <div class="section-content">
+        <p>By accessing and using this website, you accept and agree to be bound by the terms and provisions of this agreement.</p>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="section-header">2. Use License</h2>
+      <div class="section-content">
+        <p>You are permitted to temporarily download one copy of the materials for personal, non-commercial use only.</p>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="section-header">3. Disclaimer</h2>
+      <div class="section-content">
+        <p>The materials on this site are provided “as is”. We make no warranties, expressed or implied.</p>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="section-header">4. Limitations</h2>
+      <div class="section-content">
+        <p>In no event shall we be liable for any damages arising out of the use or inability to use the materials on this site.</p>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="section-header">5. Changes to Terms</h2>
+      <div class="section-content">
+        <p>We may revise these terms of service at any time without notice. By using this site, you agree to be bound by the current version.</p>
+      </div>
+    </div>
+
+    <footer>
+      <p>Contact us: support@example.com</p>
+    </footer>
+  </div>
+
+  <script>
+    const headers = document.querySelectorAll('.section-header');
+
+    headers.forEach(header => {
+      header.addEventListener('click', () => {
+        const content = header.nextElementSibling;
+        const isVisible = content.style.display === 'block';
+
+        // Close all sections
+        document.querySelectorAll('.section-content').forEach(sec => sec.style.display = 'none');
+
+        // Toggle current section
+        if (!isVisible) {
+          content.style.display = 'block';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
